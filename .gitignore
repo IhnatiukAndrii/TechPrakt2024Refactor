@@ -7,6 +7,4 @@ dist/
 build/
 *.log
 .DS_Store
-*.docx
-*.pdf
 .~lock.*

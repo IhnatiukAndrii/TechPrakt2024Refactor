@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { prisma } from "@/lib/db";
 import ProductCard from "@/components/ProductCard";
+import { PAGINATION, STATS, HERO_TEXT } from "@/lib/constants";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const featuredProducts = await prisma.product.findMany({
-    take: 4,
+    take: PAGINATION.HOME_FEATURED_PRODUCTS,
     orderBy: { createdAt: "desc" },
     include: {
       brand: true,
@@ -18,7 +19,7 @@ export default async function HomePage() {
 
   const latestNews = await prisma.news.findMany({
     where: { published: true },
-    take: 3,
+    take: PAGINATION.HOME_LATEST_NEWS,
     orderBy: { createdAt: "desc" },
   });
 
@@ -29,10 +30,10 @@ export default async function HomePage() {
     <div className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <div className={styles.heroLabel}>Преміум колекція 2026</div>
+          <div className={styles.heroLabel}>{HERO_TEXT.LABEL}</div>
           <h1 className={styles.heroTitle}>
-            Мистецтво часу<br />
-            <span className={styles.heroAccent}>у вашому житті</span>
+            {HERO_TEXT.TITLE_PART_1}<br />
+            <span className={styles.heroAccent}>{HERO_TEXT.TITLE_PART_2}</span>
           </h1>
           <p className={styles.heroDesc}>
             Відкрийте світ дизайнерських годинників від провідних швейцарських
@@ -58,7 +59,7 @@ export default async function HomePage() {
         <div className="container">
           <div className={styles.statsGrid}>
             <div className={styles.stat}>
-              <div className={styles.statNum}>{featuredProducts.length > 0 ? "8+" : "0"}</div>
+              <div className={styles.statNum}>{featuredProducts.length > 0 ? STATS.PREMIUM_MODELS_COUNT : "0"}</div>
               <div className={styles.statLabel}>Преміум моделей</div>
             </div>
             <div className={styles.stat}>
@@ -70,7 +71,7 @@ export default async function HomePage() {
               <div className={styles.statLabel}>Категорій</div>
             </div>
             <div className={styles.stat}>
-              <div className={styles.statNum}>100%</div>
+              <div className={styles.statNum}>{STATS.AUTHENTICITY_PERCENTAGE}</div>
               <div className={styles.statLabel}>Автентичні товари</div>
             </div>
           </div>
