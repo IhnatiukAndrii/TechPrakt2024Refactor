@@ -2,6 +2,8 @@ import Link from "next/link";
 import { prisma } from "@/lib/db";
 import ProductCard from "@/components/ProductCard";
 import { PAGINATION, STATS, HERO_TEXT } from "@/lib/constants";
+import HeroSection from "@/components/home/HeroSection";
+import StatsSection from "@/components/home/StatsSection";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
@@ -28,55 +30,13 @@ export default async function HomePage() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroContent}>
-          <div className={styles.heroLabel}>{HERO_TEXT.LABEL}</div>
-          <h1 className={styles.heroTitle}>
-            {HERO_TEXT.TITLE_PART_1}<br />
-            <span className={styles.heroAccent}>{HERO_TEXT.TITLE_PART_2}</span>
-          </h1>
-          <p className={styles.heroDesc}>
-            Відкрийте світ дизайнерських годинників від провідних швейцарських
-            та японських майстрів. Кожен годинник — це витвір мистецтва.
-          </p>
-          <div className={styles.heroBtns}>
-            <Link href="/catalog" className="btn btn-primary">
-              Переглянути каталог
-            </Link>
-            <Link href="/news" className="btn btn-secondary">
-              Читати новини
-            </Link>
-          </div>
-        </div>
-        <div className={styles.heroDecor}>
-          <div className={styles.heroWatch}>⌚</div>
-          <div className={styles.heroRing1} />
-          <div className={styles.heroRing2} />
-        </div>
-      </section>
+      <HeroSection />
 
-      <section className={styles.stats}>
-        <div className="container">
-          <div className={styles.statsGrid}>
-            <div className={styles.stat}>
-              <div className={styles.statNum}>{featuredProducts.length > 0 ? STATS.PREMIUM_MODELS_COUNT : "0"}</div>
-              <div className={styles.statLabel}>Преміум моделей</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNum}>{brandsCount}</div>
-              <div className={styles.statLabel}>Провідних брендів</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNum}>{categories.length}</div>
-              <div className={styles.statLabel}>Категорій</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statNum}>{STATS.AUTHENTICITY_PERCENTAGE}</div>
-              <div className={styles.statLabel}>Автентичні товари</div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatsSection 
+        hasFeaturedProducts={featuredProducts.length > 0}
+        brandsCount={brandsCount}
+        categoriesCount={categories.length}
+      />
 
       <section className={styles.section}>
         <div className="container">
