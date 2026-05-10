@@ -18,7 +18,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isAdmin = (session?.user as { role?: string })?.role === "ADMIN";
+  const isAdmin = session?.user?.role === "ADMIN";
 
   const navLinks = [
     { href: "/", label: "Головна" },

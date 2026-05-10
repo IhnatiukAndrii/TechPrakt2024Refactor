@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { prisma } from "@/lib/db";
 import ProductCard from "@/components/ProductCard";
-import { PAGINATION, STATS, HERO_TEXT } from "@/lib/constants";
+import { PAGINATION } from "@/lib/constants";
 import HeroSection from "@/components/home/HeroSection";
 import StatsSection from "@/components/home/StatsSection";
 import styles from "./page.module.css";
