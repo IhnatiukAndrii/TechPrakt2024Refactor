@@ -1,13 +1,14 @@
 import Link from "next/link";
 import styles from "./Footer.module.css";
+import { APP_NAME, APP_TAGLINE, APP_COPYRIGHT } from "@/lib/constants";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.brand}>
-          <div className={styles.logo}>⌚ TimeElite</div>
-          <p className={styles.tagline}>Мистецтво часу у вашому житті</p>
+          <div className={styles.logo}>⌚ {APP_NAME}</div>
+          <p className={styles.tagline}>{APP_TAGLINE}</p>
         </div>
         <div className={styles.links}>
           <div className={styles.group}>
@@ -27,7 +28,7 @@ export default function Footer() {
       </div>
       <div className={styles.bottom}>
         <div className="container">
-          <span>© 2026 TimeElite. Всі права захищені.</span>
+          <span>{APP_COPYRIGHT}</span>
         </div>
       </div>
     </footer>
